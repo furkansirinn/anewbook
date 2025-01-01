@@ -20,14 +20,35 @@
         // GitHub'da depolanan EPUB dosyasının URL'si
         var fileUrl = "https://furkansirinn.github.io/anewbook/anewbookss.epub";  // EPUB dosyanızın URL'si
 
-        // EPUB dosyasını yükleyin ve görüntüleyin
-        var book = ePub(fileUrl);
-        var rendition = book.renderTo("viewer", {
-            width: "100%",
-            height: "600"
-        });
+        // Hata ayıklama: URL'nin doğru olduğunu kontrol etmek
+        console.log("https://furkansirinn.github.io/anewbook/anewbookss.epub" + fileUrl);
 
-        rendition.display();
+        // EPUB dosyasını yükleme ve görüntüleme
+        try {
+            var book = ePub(fileUrl);
+            console.log("EPUB dosyası başarıyla yüklendi!");
+
+            var rendition = book.renderTo("viewer", {
+                width: "100%",
+                height: "600"
+            });
+
+            rendition.display().then(function() {
+                console.log("Kitap başarıyla görüntülendi!");
+            }).catch(function(error) {
+                console.error("Kitap görüntülenirken hata oluştu:", error);
+            });
+        } catch (error) {
+            console.error("EPUB dosyası yüklenirken hata oluştu:", error);
+        }
+
+        // Eğer dosya yüklenemezse, kullanıcıya bilgi ver
+        window.addEventListener('error', function(e) {
+            console.error('Bir hata oluştu:', e.message);
+            document.getElementById('viewer').innerText = 'Kitap yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.';
+        });
     </script>
+
+   
 </body>
 </html>
