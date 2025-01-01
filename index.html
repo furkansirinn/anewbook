@@ -16,12 +16,13 @@
         Kitap yükleniyor...
     </div>
 
-    <script>
+   
+     <script>
         // GitHub'da depolanan EPUB dosyasının URL'si
         var fileUrl = "https://furkansirinn.github.io/anewbook/anewbookss.epub";  // EPUB dosyanızın URL'si
 
         // Hata ayıklama: URL'nin doğru olduğunu kontrol etmek
-        console.log("https://furkansirinn.github.io/anewbook/anewbookss.epub" + fileUrl);
+        console.log("EPUB dosyasının URL'si: " + fileUrl);
 
         // EPUB dosyasını yükleme ve görüntüleme
         try {
@@ -37,9 +38,11 @@
                 console.log("Kitap başarıyla görüntülendi!");
             }).catch(function(error) {
                 console.error("Kitap görüntülenirken hata oluştu:", error);
+                document.getElementById('viewer').innerText = "Kitap görüntülenirken bir hata oluştu. Hata: " + error.message;
             });
         } catch (error) {
             console.error("EPUB dosyası yüklenirken hata oluştu:", error);
+            document.getElementById('viewer').innerText = "EPUB dosyası yüklenirken bir hata oluştu. Hata: " + error.message;
         }
 
         // Eğer dosya yüklenemezse, kullanıcıya bilgi ver
