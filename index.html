@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EPUB Dosyası Okuyucu</title>
+    <script src="https://cdn.jsdelivr.net/npm/epubjs@0.3.83/dist/epub.min.js"></script>
+</head>
+<body>
+    <h1>EPUB Dosyasını Yükle ve Oku</h1>
+
+    <!-- Kitap görüntüleme alanı -->
+    <div id="viewer" style="height: 600px; width: 100%; border: 1px solid #ccc;">
+        Kitap yükleniyor...
+    </div>
+
+    <script>
+        // GitHub'da depolanan EPUB dosyasının URL'si
+        var fileUrl = "https://furkansirinn.github.io/anewbook/anewbookss.epub";  // EPUB dosyanızın URL'si
+
+        // EPUB dosyasını yükleyin ve görüntüleyin
+        var book = ePub(fileUrl);
+        var rendition = book.renderTo("viewer", {
+            width: "100%",
+            height: "600"
+        });
+
+        rendition.display();
+    </script>
+</body>
+</html>
